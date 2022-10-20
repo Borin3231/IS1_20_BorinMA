@@ -22,5 +22,29 @@ namespace IS1_20_BorinMA
         {
 
         }
+
+        private void buttonLogin_Click(object sender, EventArgs e)
+        {
+            string loginUser = login.Text;
+            string PassUser = Pass.Text;
+
+            
+
+            DataTable table = new DataTable();
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+
+         
+            MySqlCommand command = new MySqlCommand("SELECT * FROM `` WHERE `login` = @uL AND `pass` = @uP");
+            command.Parameters.Add("@uL", MySqlDbType.VarChar).Value =loginUser;
+            command.Parameters.Add("@uP", MySqlDbType.VarChar).Value = PassUser;
+            adapter.SelectCommand = command;
+            adapter.Fill(table);
+
+            if (table.Rows.Count > 0)
+                MessageBox.Show("Авторизация прошла успешно");
+            else
+                MessageBox.Show("Авторизация не удалась");
+        }
     }
 }
