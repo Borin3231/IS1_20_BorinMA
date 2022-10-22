@@ -32,11 +32,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.login = new System.Windows.Forms.TextBox();
             this.Pass = new System.Windows.Forms.TextBox();
+            this.Exit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonLogin
             // 
-            this.buttonLogin.Location = new System.Drawing.Point(128, 146);
+            this.buttonLogin.Location = new System.Drawing.Point(12, 150);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(164, 53);
             this.buttonLogin.TabIndex = 0;
@@ -66,11 +67,22 @@
             this.Pass.Size = new System.Drawing.Size(164, 20);
             this.Pass.TabIndex = 3;
             // 
+            // Exit
+            // 
+            this.Exit.Location = new System.Drawing.Point(284, 150);
+            this.Exit.Name = "Exit";
+            this.Exit.Size = new System.Drawing.Size(151, 53);
+            this.Exit.TabIndex = 4;
+            this.Exit.Text = "Выйти";
+            this.Exit.UseVisualStyleBackColor = true;
+            this.Exit.Click += new System.EventHandler(this.Exit_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(447, 241);
+            this.Controls.Add(this.Exit);
             this.Controls.Add(this.Pass);
             this.Controls.Add(this.login);
             this.Controls.Add(this.label1);
@@ -89,6 +101,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox login;
         private System.Windows.Forms.TextBox Pass;
+        private System.Windows.Forms.Button Exit;
     }
 }
 
