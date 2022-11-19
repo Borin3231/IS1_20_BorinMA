@@ -8,12 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-using MetroFramework.Forms;
-using MetroFramework;
+
+
 
 namespace IS1_20_BorinMA
 {
-    public partial class Form1 : Form 
+    public partial class Form1 : MetroFramework.Forms.MetroForm
      
     {
         string connStr = "server= caseum.ru;port = 33333; user = st_1_20_4; database = 123;password=32006333;";
@@ -78,8 +78,6 @@ namespace IS1_20_BorinMA
         private void Form1_Load(object sender, EventArgs e)
         {
             conn = new MySqlConnection(connStr);
-            
-
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
@@ -124,7 +122,7 @@ namespace IS1_20_BorinMA
         {
             this.Close();
         }
-        Form2 f2 = new Form2();
+        From2 f2 = new From2();
 
         private void label2_Click(object sender, EventArgs e)
         {
@@ -138,7 +136,7 @@ namespace IS1_20_BorinMA
 
         private void Pass_TextChanged(object sender, EventArgs e)
         {
-            textBox3.Text = sha256(Pass.Text);
+            
             
         }
     }

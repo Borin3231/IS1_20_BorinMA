@@ -10,15 +10,12 @@ using System.Windows.Forms;
 
 namespace IS1_20_BorinMA
 {
-    public partial class Form2 : Form
+    public partial class From2 : Form
     {
-        public Form2()
+        public From2()
         {
             InitializeComponent();
         }
-
-        
-
         public void ManagerRole(int role)
         {
             switch (role)
@@ -56,61 +53,13 @@ namespace IS1_20_BorinMA
                     break;
             }
         }
-        private void Form2_Load(object sender, EventArgs e)
-        {
-            //Сокрытие текущей формы
-            this.Hide();
-            //Инициализируем и вызываем форму диалога авторизации
-            Form2 form17_Auth2 = new Form2();
-            //Вызов формы в режиме диалога
-            form17_Auth2.ShowDialog();
-            //Если авторизации была успешна и в поле класса хранится истина, то делаем движуху:
-            if (Auth.auth)
-            {
-                //Отображаем рабочую форму
-                this.Show();
-                //Вытаскиваем из класса поля в label'ы
-                label5.Text = Auth.auth_id;
-                label4.Text = Auth.auth_fio;
-                label6.Text = "Успешна!";
-                //Красим текст в label в зелёный цвет
-                label6.ForeColor = Color.Green;
-                //Вызываем метод управления ролями
-                ManagerRole(Auth.auth_role);
-            }
-            //иначе
-            else
-            {
-                //Закрываем форму
-                this.Close();
-            }
-        }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void From_Load2(object sender, EventArgs e)
         {
 
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        
-
-        private void Form2_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged_1(object sender, EventArgs e)
-        {
 
         }
     }
 }
+    
+
