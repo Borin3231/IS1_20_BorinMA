@@ -10,10 +10,9 @@ using System.Windows.Forms;
 
 namespace IS1_20_BorinMA
 {
-    public partial class Registr : MetroFramework.Forms.MetroForm
-
+    public partial class Main_Form : MetroFramework.Forms.MetroForm
     {
-        public Registr()
+        public Main_Form()
         {
             InitializeComponent();
         }
@@ -23,7 +22,7 @@ namespace IS1_20_BorinMA
 
         }
 
-        private void metroLabel3_Click(object sender, EventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

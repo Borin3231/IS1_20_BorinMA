@@ -16,7 +16,7 @@ namespace IS1_20_BorinMA
     public partial class Form1 : MetroFramework.Forms.MetroForm
      
     {
-        string connStr = "server= caseum.ru;port = 33333; user = st_1_20_4; database = 123;password=32006333;";
+        string connStr= "server=chuc.caseum.ru;port=33333;user=st_1_20_4;database=is_1_20_st4_KURS;password=32006333;";
 
         MySqlConnection conn;
 
@@ -41,7 +41,7 @@ namespace IS1_20_BorinMA
             // устанавливаем соединение с БД
             conn.Open();
             // запрос
-            string sql = $"SELECT * FROM t_user WHERE loginUser='{login_user}'";
+            string sql = $"SELECT * FROM Auth ";
             // объект для выполнения SQL-запроса
             MySqlCommand command = new MySqlCommand(sql, conn);
             // объект для чтения ответа сервера
@@ -52,7 +52,7 @@ namespace IS1_20_BorinMA
                 // элементы массива [] - это значения столбцов из запроса SELECT
                 Auth.auth_id = reader[0].ToString();
                 Auth.auth_fio = reader[1].ToString();
-                Auth.auth_role = Convert.ToInt32(reader[4].ToString());
+               // Auth.auth_role = Convert.ToInt32(reader[4].ToString());
             }
             reader.Close(); // закрываем reader
             // закрываем соединение с БД
@@ -67,7 +67,7 @@ namespace IS1_20_BorinMA
             //Статичное поле, которое хранит значения ФИО пользователя
             public static string auth_fio = null;
             //Статичное поле, которое хранит количество привелегий пользователя
-            public static int auth_role = 0;
+           // public static int auth_role = 0;
         }
         public Form1()
         {
@@ -82,21 +82,27 @@ namespace IS1_20_BorinMA
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            string loginUser = login.Text;
-            string PassUser = Pass.Text;
-            
+            string sql = " SELECT* FROM Auth WHERE login = @un and  password = @up";
+            //Открытие соединения
+            conn.Open();
+            //Объявляем таблицу
             DataTable table = new DataTable();
-
+            //Объявляем адаптер
             MySqlDataAdapter adapter = new MySqlDataAdapter();
-
-         
-            MySqlCommand command = new MySqlCommand("SELECT * FROM `t_user` WHERE `login` = @uL AND `pass` = @uP");
-            command.Parameters.Add("@uL", MySqlDbType.VarChar).Value =loginUser;
-            command.Parameters.Add("@uP", MySqlDbType.VarChar).Value = PassUser;
+            //Объявляем команду
+            MySqlCommand command = new MySqlCommand(sql, conn);
+            //Определяем параметры
+            command.Parameters.Add("@un", MySqlDbType.VarChar, 25);
+            command.Parameters.Add("@up", MySqlDbType.VarChar, 25);
+            //Присваиваем параметрам значение
             command.Parameters["@un"].Value = login.Text;
             command.Parameters["@up"].Value = sha256(Pass.Text);
+            //Заносим команду в адаптер
             adapter.SelectCommand = command;
+            //Заполняем таблицу
             adapter.Fill(table);
+            //Закрываем соединение
+            conn.Close();
 
             if (table.Rows.Count > 0)
             {
@@ -106,7 +112,7 @@ namespace IS1_20_BorinMA
                 GetUserInfo(login.Text);
                 MessageBox.Show("Complete");
                 this.Hide();
-                f2.ShowDialog();
+                
                 
                 //Закрываем форму
                 this.Close();
@@ -122,7 +128,7 @@ namespace IS1_20_BorinMA
         {
             this.Close();
         }
-        From2 f2 = new From2();
+        
 
         private void label2_Click(object sender, EventArgs e)
         {
